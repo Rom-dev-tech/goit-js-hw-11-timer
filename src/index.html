@@ -8,26 +8,38 @@
   </head>
 
   <body>
-    <div class="timer" id="timer-1">
-      <div class="field">
-        <span class="value" data-value="days"></span>
-        <span class="label">Days</span>
+    <div class="time-count" id="timer-1">
+      <h2 class="time-count__title">До Нового года осталось</h2>
+
+      <div class="time-count__content">
+        
+        <div class="time-count__item time-count__days">
+          <span class="time-count__val" data-value="days"></span>
+          <span class="time-count__text">Days</span>
+        </div>
+        
+        <div class="time-count__separator">:</div>
+        
+        <div class="time-count__item time-count__hours">
+          <span class="time-count__val" data-value="hours"></span>
+          <span class="time-count__text">Hours</span>
+        </div>
+        
+        <div class="time-count__separator">:</div>
+        
+        <div class="time-count__item time-count__minutes">
+          <span class="time-count__val" data-value="mins"></span>
+          <span class="time-count__text">Minutes</span>
+        </div>
+        
+        <div class="time-count__separator">:</div>
+        
+        <div class="time-count__item time-count__seconds">
+          <span class="time-count__val" data-value="secs"></span>
+          <span class="time-count__text">Seconds</span>
+        </div>
       </div>
 
-      <div class="field">
-        <span class="value" data-value="hours"></span>
-        <span class="label">Hours</span>
-      </div>
-
-      <div class="field">
-        <span class="value" data-value="mins"></span>
-        <span class="label">Minutes</span>
-      </div>
-
-      <div class="field">
-        <span class="value" data-value="secs"></span>
-        <span class="label">Seconds</span>
-      </div>
     </div>
 
     <script src="index.js"></script>

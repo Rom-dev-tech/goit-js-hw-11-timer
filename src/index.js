@@ -1,4 +1,4 @@
-// import './css/common.css';
+import './sass/main.scss';
 import CountdownTimer from './js/сountdownTimer';
 
 
