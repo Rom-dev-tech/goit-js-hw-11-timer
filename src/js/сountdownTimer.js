@@ -5,7 +5,7 @@ export default class Timer {
     this.targetDate = targetDate;
     this.timeCountdawn();
 
-    // Рефы
+    // Refs
     this.daysValue = document.querySelector(`${selector} [data-value="days"]`);
     this.hoursValue = document.querySelector(`${selector} [data-value="hours"]`);
     this.minsValue = document.querySelector(`${selector} [data-value="mins"]`);
@@ -15,9 +15,11 @@ export default class Timer {
     this.hoursText = document.querySelector(`${selector} .time-count__hours .time-count__text`);
     this.minutesText = document.querySelector(`${selector} .time-count__minutes .time-count__text`);
     this.secondsText = document.querySelector(`${selector} .time-count__seconds .time-count__text`);
+    this.reset = document.querySelector(`${selector}`);
   }
 
-  timeCountdawn = () => {
+  // time Countdawn
+  timeCountdawn() {
     if (this.isActive) {
       return;
     }
@@ -29,16 +31,16 @@ export default class Timer {
       const time = this.getTimeComponents(diff);
       this.valueClockFace(time);
 
-      // * Если событее прошло
+      // If the event has passed
       if (diff < 0) {
         clearInterval(this.intervalId);
         this.isActive = false;
-        document.querySelector(selector).innerHTML = `<p class="end">EXPIRED</p>`;
+        this.reset.innerHTML = `<p class="end">EXPIRED</p>`;
       }
     }, 1000);
-  };
+  }
 
-  // Функция обработки на дни часы минуты и секунды
+  // Time Components
   getTimeComponents(time) {
     const days = this.addZero(Math.floor(time / (1000 * 60 * 60 * 24)));
     const hours = this.addZero(Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
@@ -48,12 +50,12 @@ export default class Timer {
     return { days, hours, mins, seconds };
   }
 
-  //* Add Zeros
+  // Add Zeros
   addZero(n) {
     return (parseInt(n, 10) < 10 ? '0' : '') + n;
   }
 
-  // Функция для лайблов
+  // Denamic description of timer
   declOfNum(number, titles) {
     let cases = [2, 0, 1, 1, 1, 2];
     return titles[
@@ -61,7 +63,7 @@ export default class Timer {
     ];
   }
 
-  // Отресовка
+  // Value for clock
   valueClockFace({ days, hours, mins, seconds }) {
     this.daysValue.textContent = days;
     this.hoursValue.textContent = hours;
