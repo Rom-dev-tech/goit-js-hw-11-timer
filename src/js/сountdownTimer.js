@@ -3,6 +3,7 @@ export default class Timer {
     this.intervalId = null;
     this.isActive = false;
     this.targetDate = targetDate;
+    this.timeCountdawn();
 
     // Рефы
     this.daysValue = document.querySelector(`${selector} [data-value="days"]`);
@@ -16,7 +17,7 @@ export default class Timer {
     this.secondsText = document.querySelector(`${selector} .time-count__seconds .time-count__text`);
   }
 
-  start = () => {
+  timeCountdawn = () => {
     if (this.isActive) {
       return;
     }
@@ -26,7 +27,7 @@ export default class Timer {
     this.intervalId = setInterval(() => {
       const diff = this.targetDate - Date.now();
       const time = this.getTimeComponents(diff);
-      this.runClockFace(time);
+      this.valueClockFace(time);
 
       // * Если событее прошло
       if (diff < 0) {
@@ -61,7 +62,7 @@ export default class Timer {
   }
 
   // Отресовка
-  runClockFace({ days, hours, mins, seconds }) {
+  valueClockFace({ days, hours, mins, seconds }) {
     this.daysValue.textContent = days;
     this.hoursValue.textContent = hours;
     this.minsValue.textContent = mins;
