@@ -23,8 +23,14 @@ export default class Timer {
   // for start markup
   startValueTime() {
     const diff = this.targetDate - Date.now();
+
+    if (diff < 0) {
+      this.reset.innerHTML = `<p class="end">EXPIRED</p>`;
+    }
+
     const time = this.getTimeComponents(diff);
     this.valueClockFace(time);
+
     this.timeCountdawn();
   }
 
@@ -38,8 +44,6 @@ export default class Timer {
 
     this.intervalId = setInterval(() => {
       const diff = this.targetDate - Date.now();
-      const time = this.getTimeComponents(diff);
-      this.valueClockFace(time);
 
       // If the event has passed
       if (diff < 0) {
@@ -47,6 +51,9 @@ export default class Timer {
         this.isActive = false;
         this.reset.innerHTML = `<p class="end">EXPIRED</p>`;
       }
+
+      const time = this.getTimeComponents(diff);
+      this.valueClockFace(time);
     }, 1000);
   }
 
