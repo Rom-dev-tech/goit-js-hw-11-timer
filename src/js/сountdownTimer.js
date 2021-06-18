@@ -3,7 +3,6 @@ export default class Timer {
     this.intervalId = null;
     this.isActive = false;
     this.targetDate = targetDate;
-    this.timeCountdawn();
 
     // Refs
     this.daysValue = document.querySelector(`${selector} [data-value="days"]`);
@@ -16,6 +15,17 @@ export default class Timer {
     this.minutesText = document.querySelector(`${selector} .time-count__minutes .time-count__text`);
     this.secondsText = document.querySelector(`${selector} .time-count__seconds .time-count__text`);
     this.reset = document.querySelector(`${selector}`);
+
+    // start
+    this.startValueTime();
+  }
+
+  // for start markup
+  startValueTime() {
+    const diff = this.targetDate - Date.now();
+    const time = this.getTimeComponents(diff);
+    this.valueClockFace(time);
+    this.timeCountdawn();
   }
 
   // time Countdawn
@@ -70,9 +80,9 @@ export default class Timer {
     this.minsValue.textContent = mins;
     this.secsValue.textContent = seconds;
 
-    this.daysText.textContent = this.declOfNum(days, ['день', 'дня', 'дней']);
-    this.hoursText.textContent = this.declOfNum(hours, ['час', 'часа', 'часов']);
-    this.minutesText.textContent = this.declOfNum(mins, ['минута', 'минуты', 'минут']);
-    this.secondsText.textContent = this.declOfNum(seconds, ['секунда', 'секунды', 'секунд']);
+    this.daysText.textContent = this.declOfNum(days, ['day', 'days', 'days']);
+    this.hoursText.textContent = this.declOfNum(hours, ['hour', 'hours', 'hours']);
+    this.minutesText.textContent = this.declOfNum(mins, ['minute', 'minutes', 'minutes']);
+    this.secondsText.textContent = this.declOfNum(seconds, ['second', 'seconds', 'seconds']);
   }
 }
