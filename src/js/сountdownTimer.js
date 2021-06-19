@@ -5,16 +5,20 @@ export default class Timer {
     this.targetDate = targetDate;
 
     // Refs
-    this.daysValue = document.querySelector(`${selector} [data-value="days"]`);
-    this.hoursValue = document.querySelector(`${selector} [data-value="hours"]`);
-    this.minsValue = document.querySelector(`${selector} [data-value="mins"]`);
-    this.secsValue = document.querySelector(`${selector} [data-value="secs"]`);
+    this.daysValueRefs = document.querySelector(`${selector} [data-value="days"]`);
+    this.hoursValueRefs = document.querySelector(`${selector} [data-value="hours"]`);
+    this.minsValueRefs = document.querySelector(`${selector} [data-value="mins"]`);
+    this.secsValueRefs = document.querySelector(`${selector} [data-value="secs"]`);
 
-    this.daysText = document.querySelector(`${selector} .time-count__days .time-count__text`);
-    this.hoursText = document.querySelector(`${selector} .time-count__hours .time-count__text`);
-    this.minutesText = document.querySelector(`${selector} .time-count__minutes .time-count__text`);
-    this.secondsText = document.querySelector(`${selector} .time-count__seconds .time-count__text`);
-    this.reset = document.querySelector(`${selector}`);
+    this.daysTextRefs = document.querySelector(`${selector} .time-count__days .time-count__text`);
+    this.hoursTextRefs = document.querySelector(`${selector} .time-count__hours .time-count__text`);
+    this.minutesTextRefs = document.querySelector(
+      `${selector} .time-count__minutes .time-count__text`,
+    );
+    this.secondsTextRefs = document.querySelector(
+      `${selector} .time-count__seconds .time-count__text`,
+    );
+    this.resetRefs = document.querySelector(`${selector}`);
 
     // start
     this.startValueTime();
@@ -25,7 +29,7 @@ export default class Timer {
     const diff = this.targetDate - Date.now();
 
     if (diff < 0) {
-      this.reset.innerHTML = `<p class="end">EXPIRED</p>`;
+      this.resetRefs.innerHTML = `<p class="end">EXPIRED</p>`;
     }
 
     const time = this.getTimeComponents(diff);
@@ -49,7 +53,7 @@ export default class Timer {
       if (diff < 0) {
         clearInterval(this.intervalId);
         this.isActive = false;
-        this.reset.innerHTML = `<p class="end">EXPIRED</p>`;
+        this.resetRefs.innerHTML = `<p class="end">EXPIRED</p>`;
       }
 
       const time = this.getTimeComponents(diff);
@@ -82,14 +86,14 @@ export default class Timer {
 
   // Value for clock
   valueClockFace({ days, hours, mins, seconds }) {
-    this.daysValue.textContent = days;
-    this.hoursValue.textContent = hours;
-    this.minsValue.textContent = mins;
-    this.secsValue.textContent = seconds;
+    this.daysValueRefs.textContent = days;
+    this.hoursValueRefs.textContent = hours;
+    this.minsValueRefs.textContent = mins;
+    this.secsValueRefs.textContent = seconds;
 
-    this.daysText.textContent = this.declOfNum(days, ['day', 'days', 'days']);
-    this.hoursText.textContent = this.declOfNum(hours, ['hour', 'hours', 'hours']);
-    this.minutesText.textContent = this.declOfNum(mins, ['minute', 'minutes', 'minutes']);
-    this.secondsText.textContent = this.declOfNum(seconds, ['second', 'seconds', 'seconds']);
+    this.daysTextRefs.textContent = this.declOfNum(days, ['day', 'days', 'days']);
+    this.hoursTextRefs.textContent = this.declOfNum(hours, ['hour', 'hours', 'hours']);
+    this.minutesTextRefs.textContent = this.declOfNum(mins, ['minute', 'minutes', 'minutes']);
+    this.secondsTextRefs.textContent = this.declOfNum(seconds, ['second', 'seconds', 'seconds']);
   }
 }
